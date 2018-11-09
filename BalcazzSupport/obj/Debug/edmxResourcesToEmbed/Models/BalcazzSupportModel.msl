@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BalcazzSupportModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="Autorizaciones">
+      <EntityTypeMapping TypeName="BalcazzSupportModel.Autorizaciones">
+        <MappingFragment StoreEntitySet="Autorizaciones">
+          <ScalarProperty Name="IdProyecto" ColumnName="IdProyecto" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="idNivelAcceso" ColumnName="idNivelAcceso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clientes">
+      <EntityTypeMapping TypeName="BalcazzSupportModel.Clientes">
+        <MappingFragment StoreEntitySet="Clientes">
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+          <ScalarProperty Name="RUC" ColumnName="RUC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NivelAccesos">
+      <EntityTypeMapping TypeName="BalcazzSupportModel.NivelAccesos">
+        <MappingFragment StoreEntitySet="NivelAccesos">
+          <ScalarProperty Name="IdNivelAcceso" ColumnName="IdNivelAcceso" />
+          <ScalarProperty Name="NivelAcceso" ColumnName="NivelAcceso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prioridades">
+      <EntityTypeMapping TypeName="BalcazzSupportModel.Prioridades">
+        <MappingFragment StoreEntitySet="Prioridades">
+          <ScalarProperty Name="IdPrioridad" ColumnName="IdPrioridad" />
+          <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Proyectos">
+      <EntityTypeMapping TypeName="BalcazzSupportModel.Proyectos">
+        <MappingFragment StoreEntitySet="Proyectos">
+          <ScalarProperty Name="IdProyecto" ColumnName="IdProyecto" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="Proyecto" ColumnName="Proyecto" />
+          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+          <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+          <ScalarProperty Name="CantidadHoras" ColumnName="CantidadHoras" />
+          <ScalarProperty Name="IdPrioridad" ColumnName="IdPrioridad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tareas">
+      <EntityTypeMapping TypeName="BalcazzSupportModel.Tareas">
+        <MappingFragment StoreEntitySet="Tareas">
+          <ScalarProperty Name="IdTarea" ColumnName="IdTarea" />
+          <ScalarProperty Name="Tarea" ColumnName="Tarea" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="IdProyecto" ColumnName="IdProyecto" />
+          <ScalarProperty Name="Horas" ColumnName="Horas" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

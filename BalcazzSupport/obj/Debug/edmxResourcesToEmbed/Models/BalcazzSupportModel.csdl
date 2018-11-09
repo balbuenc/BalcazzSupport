@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BalcazzSupportModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Autorizaciones">
+    <Key>
+      <PropertyRef Name="IdProyecto" />
+      <PropertyRef Name="Usuario" />
+      <PropertyRef Name="idNivelAcceso" />
+    </Key>
+    <Property Name="IdProyecto" Type="Int32" Nullable="false" />
+    <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idNivelAcceso" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="NivelAccesos" Relationship="Self.FK_Autorizaciones_NivelAccesos" FromRole="Autorizaciones" ToRole="NivelAccesos" />
+    <NavigationProperty Name="Proyectos" Relationship="Self.FK_Autorizaciones_Proyectos" FromRole="Autorizaciones" ToRole="Proyectos" />
+  </EntityType>
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="IdCliente" />
+    </Key>
+    <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cliente" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RUC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Proyectos" Relationship="Self.FK_Proyectos_Clientes" FromRole="Clientes" ToRole="Proyectos" />
+  </EntityType>
+  <EntityType Name="NivelAccesos">
+    <Key>
+      <PropertyRef Name="IdNivelAcceso" />
+    </Key>
+    <Property Name="IdNivelAcceso" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NivelAcceso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Autorizaciones" Relationship="Self.FK_Autorizaciones_NivelAccesos" FromRole="NivelAccesos" ToRole="Autorizaciones" />
+  </EntityType>
+  <EntityType Name="Prioridades">
+    <Key>
+      <PropertyRef Name="IdPrioridad" />
+    </Key>
+    <Property Name="IdPrioridad" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Prioridad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Proyectos" Relationship="Self.FK_Proyectos_Prioridades" FromRole="Prioridades" ToRole="Proyectos" />
+  </EntityType>
+  <EntityType Name="Proyectos">
+    <Key>
+      <PropertyRef Name="IdProyecto" />
+    </Key>
+    <Property Name="IdProyecto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdCliente" Type="Int32" Nullable="false" />
+    <Property Name="Proyecto" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FechaFin" Type="DateTime" Precision="3" />
+    <Property Name="CantidadHoras" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+    <Property Name="IdPrioridad" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="Autorizaciones" Relationship="Self.FK_Autorizaciones_Proyectos" FromRole="Proyectos" ToRole="Autorizaciones" />
+    <NavigationProperty Name="Clientes" Relationship="Self.FK_Proyectos_Clientes" FromRole="Proyectos" ToRole="Clientes" />
+    <NavigationProperty Name="Prioridades" Relationship="Self.FK_Proyectos_Prioridades" FromRole="Proyectos" ToRole="Prioridades" />
+    <NavigationProperty Name="Tareas" Relationship="Self.FK_Tareas_Proyectos" FromRole="Proyectos" ToRole="Tareas" />
+  </EntityType>
+  <EntityType Name="Tareas">
+    <Key>
+      <PropertyRef Name="IdTarea" />
+    </Key>
+    <Property Name="IdTarea" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tarea" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+    <Property Name="IdProyecto" Type="Int32" Nullable="false" />
+    <Property Name="Horas" Type="Decimal" Precision="18" Scale="18" Nullable="false" />
+    <NavigationProperty Name="Proyectos" Relationship="Self.FK_Tareas_Proyectos" FromRole="Tareas" ToRole="Proyectos" />
+  </EntityType>
+  <Association Name="FK_Autorizaciones_NivelAccesos">
+    <End Role="NivelAccesos" Type="Self.NivelAccesos" Multiplicity="1" />
+    <End Role="Autorizaciones" Type="Self.Autorizaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NivelAccesos">
+        <PropertyRef Name="IdNivelAcceso" />
+      </Principal>
+      <Dependent Role="Autorizaciones">
+        <PropertyRef Name="idNivelAcceso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Autorizaciones_Proyectos">
+    <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="1" />
+    <End Role="Autorizaciones" Type="Self.Autorizaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proyectos">
+        <PropertyRef Name="IdProyecto" />
+      </Principal>
+      <Dependent Role="Autorizaciones">
+        <PropertyRef Name="IdProyecto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Proyectos_Clientes">
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+    <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clientes">
+        <PropertyRef Name="IdCliente" />
+      </Principal>
+      <Dependent Role="Proyectos">
+        <PropertyRef Name="IdCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Proyectos_Prioridades">
+    <End Role="Prioridades" Type="Self.Prioridades" Multiplicity="1" />
+    <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prioridades">
+        <PropertyRef Name="IdPrioridad" />
+      </Principal>
+      <Dependent Role="Proyectos">
+        <PropertyRef Name="IdPrioridad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tareas_Proyectos">
+    <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="1" />
+    <End Role="Tareas" Type="Self.Tareas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proyectos">
+        <PropertyRef Name="IdProyecto" />
+      </Principal>
+      <Dependent Role="Tareas">
+        <PropertyRef Name="IdProyecto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Autorizaciones" EntityType="Self.Autorizaciones" />
+    <EntitySet Name="Clientes" EntityType="Self.Clientes" />
+    <EntitySet Name="NivelAccesos" EntityType="Self.NivelAccesos" />
+    <EntitySet Name="Prioridades" EntityType="Self.Prioridades" />
+    <EntitySet Name="Proyectos" EntityType="Self.Proyectos" />
+    <EntitySet Name="Tareas" EntityType="Self.Tareas" />
+    <AssociationSet Name="FK_Autorizaciones_NivelAccesos" Association="Self.FK_Autorizaciones_NivelAccesos">
+      <End Role="NivelAccesos" EntitySet="NivelAccesos" />
+      <End Role="Autorizaciones" EntitySet="Autorizaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Autorizaciones_Proyectos" Association="Self.FK_Autorizaciones_Proyectos">
+      <End Role="Proyectos" EntitySet="Proyectos" />
+      <End Role="Autorizaciones" EntitySet="Autorizaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Proyectos_Clientes" Association="Self.FK_Proyectos_Clientes">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Proyectos" EntitySet="Proyectos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Proyectos_Prioridades" Association="Self.FK_Proyectos_Prioridades">
+      <End Role="Prioridades" EntitySet="Prioridades" />
+      <End Role="Proyectos" EntitySet="Proyectos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tareas_Proyectos" Association="Self.FK_Tareas_Proyectos">
+      <End Role="Proyectos" EntitySet="Proyectos" />
+      <End Role="Tareas" EntitySet="Tareas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
