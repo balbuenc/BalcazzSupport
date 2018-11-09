@@ -149,7 +149,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AutorizacionesController.cs" />
+    <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NivelAccesosController.cs" />
+    <Compile Include="Controllers\ProyectosController.cs" />
+    <Compile Include="Controllers\TareasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -242,9 +247,26 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Clientes\Create.cshtml" />
+    <Content Include="Views\Clientes\Delete.cshtml" />
+    <Content Include="Views\Clientes\Details.cshtml" />
+    <Content Include="Views\Clientes\Edit.cshtml" />
+    <Content Include="Views\Clientes\Index.cshtml" />
+    <Content Include="Views\Autorizaciones\Create.cshtml" />
+    <Content Include="Views\Autorizaciones\Delete.cshtml" />
+    <Content Include="Views\Autorizaciones\Details.cshtml" />
+    <Content Include="Views\Autorizaciones\Edit.cshtml" />
+    <Content Include="Views\Autorizaciones\Index.cshtml" />
+    <Content Include="Views\NivelAccesos\Create.cshtml" />
+    <Content Include="Views\NivelAccesos\Delete.cshtml" />
+    <Content Include="Views\NivelAccesos\Details.cshtml" />
+    <Content Include="Views\NivelAccesos\Edit.cshtml" />
+    <Content Include="Views\NivelAccesos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Proyectos\" />
+    <Folder Include="Views\Tareas\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

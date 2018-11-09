@@ -276,7 +276,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="BalcazzSupportEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Autorizaciones" EntityType="Self.Autorizaciones" />
           <EntitySet Name="Clientes" EntityType="Self.Clientes" />
           <EntitySet Name="NivelAccesos" EntityType="Self.NivelAccesos" />
@@ -309,7 +309,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="BalcazzSupportModelStoreContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="BalcazzSupportModelStoreContainer" CdmEntityContainer="BalcazzSupportEntities">
           <EntitySetMapping Name="Autorizaciones">
             <EntityTypeMapping TypeName="BalcazzSupportModel.Autorizaciones">
               <MappingFragment StoreEntitySet="Autorizaciones">
